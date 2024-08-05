@@ -1,35 +1,28 @@
-package com.riezki.jobstreetapp.core.remote
+package com.riezki.jobstreetapp.core.local
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.riezki.jobstreetapp.domain.models.JobsItem
 
-import com.riezki.jobstreetapp.core.local.JobsEntity
-import com.squareup.moshi.Json
-
-data class JobsItemDto(
-    @Json(name = "company")
-    val company: String?,
-    @Json(name = "company_logo")
-    val companyLogo: String?,
-    @Json(name = "company_url")
-    val companyUrl: String?,
-    @Json(name = "created_at")
-    val createdAt: String?,
-    @Json(name = "description")
-    val description: String?,
-    @Json(name = "how_to_apply")
-    val howToApply: String?,
-    @Json(name = "id")
+@Entity
+data class JobsEntity(
+    @PrimaryKey
+    val idEntity: Int? = null,
     val id: String?,
-    @Json(name = "location")
+    val company: String?,
+    val companyLogo: String?,
+    val companyUrl: String?,
+    val createdAt: String?,
+    val description: String?,
+    val howToApply: String?,
     val location: String?,
-    @Json(name = "title")
     val title: String?,
-    @Json(name = "type")
     val type: String?,
-    @Json(name = "url")
     val url: String?
 ) {
-    fun toEntity() : JobsEntity {
-        return JobsEntity(
+    fun toDomain() : JobsItem {
+        return JobsItem(
+            idEntity = idEntity,
             id = id,
             title = title,
             company = company,

@@ -12,9 +12,10 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("positions.json?")
-    suspend fun getJobs(
+    suspend fun getFilteredJobs(
         @Query("description") description: String,
-        @Query("location") location: String
+        @Query("location") location: String,
+        @Query("full_time") fullTime: Boolean
     ): List<JobsItemDto>
 
     @GET("positions.json?")

@@ -15,5 +15,6 @@ data class JobsItem(
     val location: String?,
     val title: String?,
     val type: String?,
-    val url: String?
+    val url: String?,
+    val idEntity: Int?
 ) : Parcelable
