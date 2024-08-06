@@ -6,19 +6,18 @@ import com.riezki.jobstreetapp.domain.models.JobsItem
 
 @Entity
 data class JobsEntity(
-    @PrimaryKey
-    val idEntity: Int? = null,
-    val id: String?,
-    val company: String?,
-    val companyLogo: String?,
-    val companyUrl: String?,
-    val createdAt: String?,
-    val description: String?,
-    val howToApply: String?,
-    val location: String?,
-    val title: String?,
-    val type: String?,
-    val url: String?
+    @PrimaryKey(autoGenerate = true) val idEntity: Int? = null,
+    val id: String? = null,
+    val company: String? = null,
+    val companyLogo: String? = null,
+    val companyUrl: String? = null,
+    val createdAt: String? = null,
+    val description: String? = null,
+    val howToApply: String? = null,
+    val location: String? = null,
+    val title: String? = null,
+    val type: String? = null,
+    val url: String? = null
 ) {
     fun toDomain() : JobsItem {
         return JobsItem(

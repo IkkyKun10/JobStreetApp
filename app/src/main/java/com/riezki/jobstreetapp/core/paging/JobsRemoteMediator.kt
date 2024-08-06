@@ -41,19 +41,21 @@ class JobsRemoteMediator(
             }
 
             val jobs = apiService.getJobsByPage(
-                page = loadKey ?: 1,
+                page = loadKey!!,
             )
 
             jobsDb.withTransaction {
                 if(loadType == LoadType.REFRESH) {
                     jobsDb.jobsDao.clearAll()
                 }
-                val jobsEntities = jobs.map { it.toEntity() }
-                jobsDb.jobsDao.upsertAll(jobsEntities)
+                val jobsEntities = jobs?.map { it.toEntity() }
+                if (jobsEntities != null) {
+                    jobsDb.jobsDao.upsertAll(jobsEntities)
+                }
             }
 
             MediatorResult.Success(
-                endOfPaginationReached = jobs.isEmpty()
+                endOfPaginationReached = jobs?.isEmpty() == true
             )
         } catch(e: IOException) {
             MediatorResult.Error(e)

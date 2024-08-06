@@ -21,7 +21,7 @@ interface ApiService {
     @GET("positions.json?")
     suspend fun getJobsByPage(
         @Query("page") page: Int
-    ): List<JobsItemDto>
+    ): List<JobsItemDto>?
 
     @GET("positions/{id}")
     suspend fun getJobDetail(
