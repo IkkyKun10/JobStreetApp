@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.flow
 
 class JobsRepositoryImpl(
     private val apiService: ApiService,
-    private val db: JobsDatabase
+    private val db: JobsDatabase,
 ) : JobsRepository {
     override fun getFilteredJobs(description: String, location: String, fullTime: Boolean): Flow<List<JobsItem>> {
         return flow {
@@ -37,7 +37,7 @@ class JobsRepositoryImpl(
     override fun getJobsByPage(): Pager<Int, JobsEntity> {
         return Pager(
             config = PagingConfig(
-                pageSize = 10,
+                pageSize = 5,
             ),
             remoteMediator = JobsRemoteMediator(
                 apiService = apiService,
@@ -57,7 +57,21 @@ class JobsRepositoryImpl(
                 emit(domain)
             } catch (e: Exception) {
                 e.printStackTrace()
-                emit(JobsItem("", "", "", "", "", "", "", "", "", "", "", 0))
+                emit(
+                    JobsItem(
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    )
+                )
             }
         }
     }

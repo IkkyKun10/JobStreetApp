@@ -30,7 +30,7 @@ data class JobsItemDto(
 ) {
     fun toEntity() : JobsEntity {
         return JobsEntity(
-            id = id,
+            id = id.toString(),
             title = title,
             company = company,
             companyLogo = companyLogo,

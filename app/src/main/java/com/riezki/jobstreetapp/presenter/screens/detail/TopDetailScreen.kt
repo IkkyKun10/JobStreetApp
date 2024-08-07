@@ -116,7 +116,6 @@ fun TopDetailScreenPreview() {
             "Data Engineer",
             "",
             "",
-            idEntity = 0,
         )
     )
 }

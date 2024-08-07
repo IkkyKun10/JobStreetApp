@@ -125,7 +125,6 @@ fun HomeItemScreensPreview() {
             "Data Engineer",
             "",
             "",
-            idEntity = 0,
         ),
     )
     {

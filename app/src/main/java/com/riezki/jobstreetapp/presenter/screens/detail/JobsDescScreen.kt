@@ -105,7 +105,6 @@ fun JobsScreenPreview() {
             "Software Engineer",
             "Yes",
             "",
-            idEntity = 0,
         )
     )
 }

@@ -4,9 +4,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
@@ -28,10 +28,13 @@ import androidx.compose.ui.unit.sp
  */
 
 @Composable
-fun FilterJobsScreen() {
+fun FilterJobsScreen(
+    modifier: Modifier = Modifier,
+) {
     OutlinedCard(
         border = BorderStroke(1.dp, Color.Black),
-        modifier = Modifier
+        modifier = modifier
+            .padding(horizontal = 12.dp)
             .fillMaxWidth(),
     ) {
         var textLoc by remember { mutableStateOf("") }
@@ -56,7 +59,10 @@ fun FilterJobsScreen() {
                 onValueChange = {
                     textLoc = it
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .padding(top = 4.dp)
+                    .height(24.dp)
+                    .fillMaxWidth()
             )
             Text(
                 text = "Description",
@@ -67,11 +73,14 @@ fun FilterJobsScreen() {
                 onValueChange = {
                     textDescsFilter = it
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .padding(top = 4.dp)
+                    .height(24.dp)
+                    .fillMaxWidth()
             )
             Button(
                 modifier = Modifier
-                    .padding(top = 8.dp)
+                    .padding(top = 12.dp)
                     .size(120.dp, 50.dp)
                     .align(Alignment.End),
                 onClick = { /*TODO*/ },
@@ -86,5 +95,5 @@ fun FilterJobsScreen() {
 @Preview
 @Composable
 fun FilterJobsScreenPrev() {
-    FilterJobsScreen()
+    FilterJobsScreen(modifier = Modifier)
 }

@@ -6,21 +6,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import com.riezki.jobstreetapp.domain.models.JobsItem
 
@@ -28,9 +22,9 @@ import com.riezki.jobstreetapp.domain.models.JobsItem
  * @author riezky maisyar
  */
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    modifier: Modifier,
     jobsList: LazyPagingItems<JobsItem>,
     onClickedItem: (JobsItem) -> Unit
 ) {
@@ -47,14 +41,11 @@ fun HomeScreen(
     }
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize(),
     ) {
-        CenterAlignedTopAppBar(
-            title = {
-                Text(text = "Job Detail")
-            },
-            colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White),
-        )
+
+        FilterJobsScreen()
 
         if (jobsList.loadState.refresh is LoadState.Loading) {
             CircularProgressIndicator(
@@ -62,16 +53,15 @@ fun HomeScreen(
             )
         } else {
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
+                modifier = modifier
+                    .padding(horizontal = 12.dp)
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 items(
                     count = jobsList.itemCount,
-                    key = jobsList.itemKey { it.idEntity!! },
-                    contentType = jobsList.itemContentType { "contentType" }
+                    key = jobsList.itemKey { it.id.toString() },
                 ) { index ->
                     val jobs = jobsList[index]
                     if (jobs != null) {

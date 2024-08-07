@@ -1,5 +1,6 @@
 package com.riezki.jobstreetapp.core.local
 
+import androidx.annotation.Nullable
 import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Query
