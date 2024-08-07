@@ -41,7 +41,8 @@ fun HomeScreen(
     }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
+            .padding(horizontal = 12.dp)
             .fillMaxSize(),
     ) {
 
@@ -53,8 +54,7 @@ fun HomeScreen(
             )
         } else {
             LazyColumn(
-                modifier = modifier
-                    .padding(horizontal = 12.dp)
+                modifier = Modifier
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
