@@ -55,6 +55,7 @@ fun HomeItemScreens(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(jobsItem.companyLogo)
                     .crossfade(true)
+                    .error(R.drawable.ic_broken_image)
                     .build(),
                 contentDescription = null,
                 modifier = Modifier

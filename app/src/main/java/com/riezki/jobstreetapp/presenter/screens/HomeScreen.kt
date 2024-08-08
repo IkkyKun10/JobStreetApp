@@ -17,6 +17,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemKey
 import com.riezki.jobstreetapp.domain.models.JobsItem
+import com.riezki.jobstreetapp.presenter.viewmodel.HomeViewModel
 
 /**
  * @author riezky maisyar
@@ -26,6 +27,7 @@ import com.riezki.jobstreetapp.domain.models.JobsItem
 fun HomeScreen(
     modifier: Modifier,
     jobsList: LazyPagingItems<JobsItem>,
+    viewModel: HomeViewModel,
     onClickedItem: (JobsItem) -> Unit
 ) {
     val context = LocalContext.current
@@ -45,9 +47,6 @@ fun HomeScreen(
             .padding(horizontal = 12.dp)
             .fillMaxSize(),
     ) {
-
-        FilterJobsScreen()
-
         if (jobsList.loadState.refresh is LoadState.Loading) {
             CircularProgressIndicator(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -59,6 +58,12 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                item {
+                    FilterJobsScreen(
+                        viewModel = viewModel
+                    )
+                }
+
                 items(
                     count = jobsList.itemCount,
                     key = jobsList.itemKey { it.id.toString() },

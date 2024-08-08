@@ -1,5 +1,9 @@
 package com.riezki.jobstreetapp.presenter.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -19,6 +23,9 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val useCase: JobsUseCase
 ) : ViewModel() {
+
+    var textLoc by mutableStateOf("")
+    var textDescFilter by  mutableStateOf("")
 
     //first state whether the search is happening or not
     private val _isSearching = MutableStateFlow(false)
