@@ -50,7 +50,8 @@ fun TopDetailScreen(
         ) {
             Row(
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.google_img),
@@ -72,15 +73,11 @@ fun TopDetailScreen(
                         text = jobsItem.title.toString(),
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.fillMaxWidth()
                     )
                     Text(
                         text = jobsItem.company.toString(),
                         fontSize = 12.sp,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
                         modifier = Modifier
                             .padding(top = 4.dp)
                             .fillMaxWidth()

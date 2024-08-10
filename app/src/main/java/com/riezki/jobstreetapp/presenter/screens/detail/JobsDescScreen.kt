@@ -80,7 +80,8 @@ fun JobsDescScreen(
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(
                     start = 16.dp,
-                    bottom = 8.dp
+                    bottom = 8.dp,
+                    end = 8.dp
                 )
             )
         }
